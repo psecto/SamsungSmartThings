@@ -26,7 +26,7 @@ definition(
 
 preferences {
 	section("Set Device") {
-		input "MyVButton", "cabability.momentary", required: true, title: "Add Trigger"
+		input "MyVButton", "capability.momentary", required: true, title: "Add button Trigger"
 		input "macSet", "text", title: "Input MAC", required: true
 	}
 }
