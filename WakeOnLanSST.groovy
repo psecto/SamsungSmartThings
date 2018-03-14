@@ -14,22 +14,20 @@
  */
  
 definition(
-    name: "Wake On Lan",
+    name: "WOLan wtex_i",
     namespace: "psecto",
     author: "Mihai Floares",
-    description: "wake on lan any device using Samsung Smarthings Hub",
+    description: "Wake On Lan with Text Input for Samsung Smarthings Hub",
     category: "My Apps",
     iconUrl: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience.png",
     iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png",
     iconX3Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png")
 
-	{
-	appSetting "pcmac"
-}
 
 preferences {
-	section("wolPC") {
-		input "wolPC", "cabability.switch", required: true, title: "Select the Button"
+	section("Set Device") {
+		input "MyVButton", "cabability.momentary", required: true, title: "Add Trigger"
+		input "macSet", "text", title: "Input MAC", required: true
 	}
 }
 
@@ -45,12 +43,12 @@ def updated () {
 }
 
 def initialize () {
-	subscribeToCommand(wolPC, "push", wakeonlan)
+	subscribeToCommand(MyVButton, "push", WakeOnLan)
 }
 
-def wakeonlan(evt) {
+def WakeOnLan(evt) {
 	sendHubCommand(new physicalgraph.device.HubAction (
-		"wake on lan $appSettings.pcmac",
+		"wake on lan $macSet",
 		physicalgraph.device.Protocol.LAN,
 		null,
 		[:]
