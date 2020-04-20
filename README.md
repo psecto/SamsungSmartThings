@@ -1,2 +1,3 @@
 # SamsungSmartThings
-SmartThings Hub Apps
+SmartThings hub wake on lan button app
+
